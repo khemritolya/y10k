@@ -139,7 +139,7 @@ public class MainLoop extends ApplicationAdapter {
 
 		renderer.setProjectionMatrix(camera.combined);
 		renderer.begin(ShapeRenderer.ShapeType.Line);
-		if (!inMenu) c.renderAux(renderer);
+		//if (!inMenu) c.renderAux(renderer);
 		renderer.end();
 
 		starBatch.begin();
