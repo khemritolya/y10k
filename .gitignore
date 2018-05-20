@@ -123,5 +123,4 @@ classes/
 
 # Actual y10k stuff
 logs/
-y10k.jar
-y10k.zip
+save/
