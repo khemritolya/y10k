@@ -35,8 +35,6 @@ public class MainLoop extends ApplicationAdapter {
 	private Camera camera;
 	private ArrayList<Integer> fpsList;
 
-	private Environment environment;
-
 	private ShapeRenderer renderer;
 	public BitmapFont font;
 	private SpriteBatch uiBatch;
@@ -76,6 +74,7 @@ public class MainLoop extends ApplicationAdapter {
 
 			renderer = new ShapeRenderer();
 			renderer.setColor(Color.DARK_GRAY.r, Color.DARK_GRAY.g, Color.DARK_GRAY.b, 0.5f);
+			renderer.rotate(1, 0, 0, 90);
 
 			FreeTypeFontGenerator f = new FreeTypeFontGenerator(Gdx.files.absolute("assets/y10k-font.ttf"));
 			FreeTypeFontGenerator.FreeTypeFontParameter ftfp = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -99,9 +98,6 @@ public class MainLoop extends ApplicationAdapter {
 			WindowManager.init();
 
 			nm = new NameFactory("assets/predefs/constellations.txt", 2, 6);
-
-			environment = new Environment();
-			environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.8f, 0.8f, 0.8f, 1.0f));
 
 			c = new Galaxy();
 
@@ -143,10 +139,11 @@ public class MainLoop extends ApplicationAdapter {
 
 		renderer.setProjectionMatrix(camera.combined);
 		renderer.begin(ShapeRenderer.ShapeType.Line);
+		//if (!inMenu) c.renderAux(renderer);
 		renderer.end();
 
 		starBatch.begin();
-		c.render(starBatch, camera);
+		c.renderStars(starBatch, camera);
 		starBatch.end();
 
 		uiBatch.begin();
@@ -162,10 +159,11 @@ public class MainLoop extends ApplicationAdapter {
 		averagedFPS /= fpsList.size();
 		font.draw(uiBatch, " FPS: " + averagedFPS, 0, Gdx.graphics.getHeight() - 10);
 
-		font.draw(uiBatch, " Star Count: " + c.size(), 0, Gdx.graphics.getHeight() - 10 - font.getLineHeight());
-        font.draw(uiBatch, " Cam: " +  Math.round(camera.position.x) +
-                        ", " + Math.round(camera.position.y) + ", " + Math.round(camera.position.z), 0,
-                Gdx.graphics.getHeight() - 10 - 2 * font.getLineHeight());
+		font.draw(uiBatch, " Cam: " +  Math.round(camera.position.x) +
+						", " + Math.round(camera.position.y) + ", " + Math.round(camera.position.z), 0,
+				Gdx.graphics.getHeight() - 10 - font.getLineHeight());
+
+		font.draw(uiBatch, " Star Count: " + c.size(), 0, Gdx.graphics.getHeight() - 10 - 2 * font.getLineHeight());
 
         WindowManager.render(uiBatch, font);
 

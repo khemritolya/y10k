@@ -2,6 +2,7 @@ package com.kti.y10k.universe;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.kti.y10k.utilities.Logger;
 import com.kti.y10k.utilities.managers.GalaxyConstManager;
 
@@ -12,6 +13,7 @@ import java.util.Random;
 public class Galaxy {
     private List<Star> stars = new ArrayList<>();
     private Random r;
+    private float galacticRadius;
 
     public Galaxy() {
         Logger.log(Logger.LogLevel.INFO, "Generating a new galaxy...");
@@ -62,9 +64,9 @@ public class Galaxy {
         }
 
         float regularDensityConstant = GalaxyConstManager.requestConstant("regular_adj_density");
-        float galRad = GalaxyConstManager.requestConstant("galaxy_radius");
+        galacticRadius = GalaxyConstManager.requestConstant("galaxy_radius");
         for (float i = 0; i < lim; i += randF() * Math.PI / regularDensityConstant) {
-            float rad = galRad * (randF2() + 0.1f);
+            float rad = galacticRadius / 2 * (randF2() + 0.1f);
             float x = (float) (Math.cos(i) * rad);
             float y = 0;
             float z = (float) (Math.sin(i) * rad);
@@ -91,8 +93,13 @@ public class Galaxy {
 
     private float randF2() { return (float) (r.nextGaussian() + 1) / 2; }
 
-    public void render(SpriteBatch batch, Camera c) {
+    public void renderStars(SpriteBatch batch, Camera c) {
         for (Star s:stars) s.render(batch, c);
+    }
+
+    public void renderAux(ShapeRenderer r) {
+        r.setColor(1,1,1,0.7f);
+        r.circle(0,0, galacticRadius);
     }
 
     public List<String> asString() {

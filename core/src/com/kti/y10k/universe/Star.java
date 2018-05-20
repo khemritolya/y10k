@@ -49,7 +49,7 @@ public class Star {
                 batch.draw(STAR_TEXTURE, use1.x - STAR_SIZE / 2 / dst * sizeMod, use1.y - STAR_SIZE / 2 / dst * sizeMod,
                         STAR_SIZE / dst * sizeMod, STAR_SIZE / dst * sizeMod);
             } else {
-                batch.setColor(c.r, c.g, c.b, 1.0f < 400 / dst ? 1.0f : 300 / dst);
+                batch.setColor(c.r, c.g, c.b, 1.0f < 600 / dst ? 1.0f : 600 / dst);
                 batch.draw(STAR_TEXTURE, use1.x - 1 * sizeMod, use1.y - 1 * sizeMod,
                         2 * sizeMod, 2 * sizeMod);
             }
