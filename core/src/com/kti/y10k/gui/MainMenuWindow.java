@@ -12,6 +12,9 @@ import com.kti.y10k.io.SaveWriter;
 import com.kti.y10k.utilities.Logger;
 import com.kti.y10k.utilities.managers.WindowManager;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class MainMenuWindow extends WindowWrapper {
     private TextButton newGame;
     private TextButton resumeButton;
@@ -38,7 +41,7 @@ public class MainMenuWindow extends WindowWrapper {
             public void clicked(InputEvent event, float x, float y) {
                 if (MainLoop.instance.started) {
                     MainLoop.instance.inMenu = false;
-                } else {
+                } else if (!Files.notExists(Paths.get("save"))) {
                     Thread t = new Thread() {
                         @Override
                         public void run() {
@@ -144,8 +147,10 @@ public class MainMenuWindow extends WindowWrapper {
     @Override
     public void draw(SpriteBatch uiBatch, BitmapFont font, float x, float y, float width, float height) {
         resumeButton.setPosition(x + 5, y + height / 2 + 4*font.getLineHeight() - 5);
-        resumeButton.draw(uiBatch, 1);
-        resumeButton.draw(uiBatch, 0.4f);
+        if (MainLoop.instance.started || !Files.notExists(Paths.get("save")))
+            resumeButton.draw(uiBatch, 1);
+        else
+            resumeButton.draw(uiBatch, 0.4f);
 
         newGame.setPosition(x + 5, y + height / 2 + 3*font.getLineHeight() - 5);
         newGame.draw(uiBatch, 1);
