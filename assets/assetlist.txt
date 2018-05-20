@@ -1,0 +1,11 @@
+#
+# The y10k assetlist
+#
+# Format:
+#
+# [ID] [filepath]
+#
+
+star img/star.png
+win img/window.png
+cursor img/cursor2.png

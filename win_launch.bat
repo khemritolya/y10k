@@ -1,0 +1,1 @@
+java -jar y10k.jar

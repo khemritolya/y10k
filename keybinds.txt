@@ -1,0 +1,27 @@
+#
+# The y10k keybinds file
+#
+# Format:
+#
+# [command] [key]
+#
+# See source code file Listener.java for keys for now
+# Sorry
+# TODO keys
+#
+
+# go to mainmenu
+ESC mainmenu
+
+# force close y10k
+BACKSPACE close
+
+# zoom in
+W forward
+
+# zoom out
+S backward
+
+# close the topmost notification
+# also submit text prompts
+ENTER close_dialog

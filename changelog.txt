@@ -1,0 +1,25 @@
+y10k changelog
+
+ - v0.02 "Jupiter"
+
+ Initial Internal Release
+
+- v0.03 "Juno"
+
+ Added a Galaxy Constant Manger
+    - see assets/predefs/galconsts.txt
+    - Suggested by Mr. Sours
+
+ Added a Windows Launch Script
+    - Windows Defender may scream at you
+    - see win_launch.bat
+    - Suggested by Ecnal
+
+ Modified TextInputWindows
+    - Added a cursor
+    - Made the text box darker
+    - Enter submits now
+
+ Added installation instructions to README.MD
+
+ Various other QoL things
