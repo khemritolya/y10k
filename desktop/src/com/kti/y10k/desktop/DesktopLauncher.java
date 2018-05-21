@@ -15,7 +15,7 @@ public class DesktopLauncher extends JFrame implements ActionListener {
 	private static final int width = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	private static final int height = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	private static final String[] resolutions = {"1920x1080", "1280x720", "800x640", "480x360"};
-	private static final String version = "0.03 - \"Juno\"";
+	private static final String version = "0.04 - \"Vulcan\"";
 
 	private JComboBox resolutionSelector;
 	private JCheckBox fullscreenBox;

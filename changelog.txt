@@ -6,13 +6,16 @@ y10k changelog
 
 - v0.03 "Juno"
 
+ Added Galaxy Loading
+    - We can't just have you create the saves and not do anything with them!
+
  Added a Galaxy Constant Manger
     - see assets/predefs/galconsts.txt
     - Suggested by Mr. Sours
 
- Added a Windows Launch Script
+ Added a Windows/Linux Launch Scripts
     - Windows Defender may scream at you
-    - see win_launch.bat
+    - see win_launch.bat/linux_launch.sh
     - Suggested by Ecnal
 
  Modified TextInputWindows
