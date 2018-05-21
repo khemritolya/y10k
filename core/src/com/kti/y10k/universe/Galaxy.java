@@ -30,8 +30,9 @@ public class Galaxy {
         float pow = GalaxyConstManager.requestConstant("expansion_exponent");
         float fac = GalaxyConstManager.requestConstant("expansion_factor");
         float spiralDensityConstant = GalaxyConstManager.requestConstant("spiral_adj_density");
+        float peter = GalaxyConstManager.requestConstant("spiral_peter");
 
-        for (float i = -(float) Math.PI / 4; i < lim; i += randF() * Math.PI / spiralDensityConstant) {
+        for (float i = 0; i < lim; i += randF() * Math.PI / spiralDensityConstant * (1 + peter * i / lim)) {
             float raderr = err * (randF()-0.5f);
             float rad = fac*(float)Math.pow(i, pow) + raderr;
             float x = -(float) (Math.cos(i) * rad);
@@ -40,10 +41,10 @@ public class Galaxy {
             float z = -(float) (Math.sin(i) * rad);
 
             if (Math.sqrt(x*x + z*z) - 1f > 0)
-                stars.add(new Star(x, y, z,1 + randF()));
+                stars.add(new Star(x - err / 4, y, z,1 + randF()));
         }
 
-        for (float i = -(float) Math.PI / 4; i < lim; i += randF() * Math.PI / spiralDensityConstant) {
+        for (float i = 0; i < lim; i += randF() * Math.PI / spiralDensityConstant * (1 + peter * i / lim)) {
             float raderr = err * (randF()-0.5f);
             float rad = fac*(float)Math.pow(i, pow) + raderr;
             float x = (float) (Math.cos(i) * rad);
@@ -52,8 +53,9 @@ public class Galaxy {
             float z = (float) (Math.sin(i) * rad);
 
             if (Math.sqrt(x*x + z*z) - 1f > 0)
-                stars.add(new Star(x, y, z,1 + randF()));
+                stars.add(new Star(x + err / 4, y, z,1 + randF()));
         }
+
 
         float coreDensityConstant = GalaxyConstManager.requestConstant("core_adj_density");
         for (float i = 0; i < Math.PI * 2; i+= randF() * Math.PI / coreDensityConstant) {
@@ -81,6 +83,10 @@ public class Galaxy {
         List<Star> toRemove = new ArrayList<>();
         for (Star s:stars) if (!s.verify()) toRemove.add(s);
         for (Star s:toRemove) stars.remove(s);
+
+        // TODO generate the point plane
+        // is a point inside a polygon code:
+        //https://www.codeproject.com/tips/84226/is-a-point-inside-a-polygon
 
         Logger.log(Logger.LogLevel.DEBUG, "Done Generating in " +
                 (System.currentTimeMillis() - begin) + "ms");

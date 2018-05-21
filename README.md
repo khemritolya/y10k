@@ -24,7 +24,7 @@ Engine in libGDX (http://libgdx.badlogicgames.com/)
 
 Used GIMP for assets (https://www.gimp.org/)
 
-Uses the Aenid (http://www.thelatinlibrary.com/vergil/aen9.shtml)
+Uses the Aeneid (http://www.thelatinlibrary.com/vergil/aen9.shtml)
 
 Installation:
 

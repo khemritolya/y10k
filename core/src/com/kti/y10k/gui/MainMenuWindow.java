@@ -154,7 +154,7 @@ public class MainMenuWindow extends WindowWrapper {
         else
             resumeButton.draw(uiBatch, 0.4f);
 
-        newGame.setPosition(x + 5, y + height / 2 + 3*font.getLineHeight() - 5);
+        newGame.setPosition(x + 5, y + height / 2 + 3 * font.getLineHeight() - 5);
         newGame.draw(uiBatch, 1);
 
         saveGame.setPosition(x + 6, y + height / 2 + 2 * font.getLineHeight() - 5);

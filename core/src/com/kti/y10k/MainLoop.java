@@ -159,9 +159,10 @@ public class MainLoop extends ApplicationAdapter {
 		averagedFPS /= fpsList.size();
 		font.draw(uiBatch, " FPS: " + averagedFPS, 0, Gdx.graphics.getHeight() - 10);
 
-		font.draw(uiBatch, " Cam: " +  Math.round(camera.position.x) +
-						", " + Math.round(camera.position.y) + ", " + Math.round(camera.position.z), 0,
-				Gdx.graphics.getHeight() - 10 - font.getLineHeight());
+		font.draw(uiBatch, " Cam: " +  Math.round(camera.position.x * 10)  / 10.0 +
+						", " + Math.round(camera.position.y * 10) / 10.0 +
+						", " + Math.round(camera.position.z * 10) / 10.0,
+				0, Gdx.graphics.getHeight() - 10 - font.getLineHeight());
 
 		font.draw(uiBatch, " Star Count: " + c.size(), 0, Gdx.graphics.getHeight() - 10 - 2 * font.getLineHeight());
 

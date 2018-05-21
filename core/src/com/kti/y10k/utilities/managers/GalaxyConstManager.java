@@ -25,7 +25,7 @@ public class GalaxyConstManager {
             }
 
         } catch (Exception e) {
-            Logger.log(Logger.LogLevel.ERROR,"Service critical error in assetload");
+            Logger.log(Logger.LogLevel.ERROR,"Service critical error in galconst load");
             Logger.log(e.getStackTrace());
 
             return 0;

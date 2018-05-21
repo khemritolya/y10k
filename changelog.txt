@@ -26,3 +26,7 @@ y10k changelog
  Added installation instructions to README.MD
 
  Various other QoL things
+
+- v0.04 "Vulcan"
+
+  Made some edits to galaxy generation
