@@ -34,7 +34,7 @@ spiral_peter 1.5
 
 # How fast should the spiral grow?
 # General equation for the spiral is r = a * theta ^ b
-# where a = expansion_factor and b = expanasion exponent
+# where a = expansion_factor and b = expansion exponent
 expansion_exponent 2.4
 expansion_factor 10
 
