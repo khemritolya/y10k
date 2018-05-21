@@ -10,6 +10,11 @@
 # [Const Name] [Number Value]
 #
 
+# Use a seed
+# 0 = no
+# 1 = yes
+use_seed 0
+
 # The seed RNGesus uses to generate the galaxy
 seed 1776
 

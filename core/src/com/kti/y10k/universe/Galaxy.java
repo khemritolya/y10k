@@ -20,7 +20,10 @@ public class Galaxy {
         long begin = System.currentTimeMillis();
 
         stars.clear();
-        r = new Random((int)GalaxyConstManager.requestConstant("seed"));
+        if (0 != GalaxyConstManager.requestConstant("use_seed"))
+            r = new Random((int)GalaxyConstManager.requestConstant("seed"));
+        else
+            r = new Random();
 
         float lim = GalaxyConstManager.requestConstant("spiral_length");
         float err = GalaxyConstManager.requestConstant("spiral_radius");
@@ -99,7 +102,7 @@ public class Galaxy {
 
     public void renderAux(ShapeRenderer r) {
         r.setColor(1,1,1,0.7f);
-        r.circle(0,0, galacticRadius);
+        r.circle(0,0, galacticRadius, 500);
     }
 
     public List<String> asString() {

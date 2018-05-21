@@ -9,6 +9,7 @@ import com.kti.y10k.MainLoop;
 import com.kti.y10k.gui.helpers.TextButtonHelper;
 import com.kti.y10k.io.SaveLoader;
 import com.kti.y10k.io.SaveWriter;
+import com.kti.y10k.universe.Galaxy;
 import com.kti.y10k.utilities.Logger;
 import com.kti.y10k.utilities.managers.WindowManager;
 
@@ -31,6 +32,7 @@ public class MainMenuWindow extends WindowWrapper {
             public void clicked(InputEvent event, float x, float y) {
                 MainLoop.instance.inMenu = false;
                 MainLoop.instance.started = true;
+                MainLoop.instance.c = new Galaxy();
             }
         });
         WindowManager.components.addActor(newGame);
