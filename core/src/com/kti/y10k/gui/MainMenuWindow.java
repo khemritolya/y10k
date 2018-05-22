@@ -34,8 +34,9 @@ public class MainMenuWindow extends WindowWrapper {
                 MainLoop.instance.inMenu = false;
                 MainLoop.instance.started = true;
                 MainLoop.instance.c = new Galaxy();
-                MainLoop.instance.getCamera().position.set(-30, 651, 30);
+                MainLoop.instance.getCamera().position.set(400, 651, -400);
                 MainLoop.instance.getCamera().lookAt(0,0,0);
+                MainLoop.instance.getCamera().up.set(Vector3.Y);
 
             }
         });
