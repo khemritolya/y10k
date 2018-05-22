@@ -17,11 +17,23 @@ ESC mainmenu
 BACKSPACE close
 
 # zoom in
-W forward
+W zoom-in
 
 # zoom out
-S backward
+S zoom-out
 
 # close the topmost notification
 # also submit text prompts
 ENTER close_dialog
+
+# forward
+ARROW-UP forward
+
+# backward
+ARROW-DOWN backward
+
+# right
+ARROW-RIGHT right
+
+# left
+ARROW-LEFT left

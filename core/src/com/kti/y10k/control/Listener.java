@@ -9,7 +9,6 @@ import com.kti.y10k.MainLoop;
 import com.kti.y10k.utilities.managers.WindowManager;
 
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -34,10 +33,15 @@ public class Listener {
 
         actionMap = new HashMap<>();
         actionMap.put("mainmenu", new MainMenu());
-        actionMap.put("forward", new Forward());
-        actionMap.put("backward", new Backward());
+        actionMap.put("zoom-in", new ZoomIn());
+        actionMap.put("zoom-out", new ZoomOut());
         actionMap.put("close", new Close());
         actionMap.put("close_dialog", new CloseDialog());
+        actionMap.put("forward", new Forward());
+        actionMap.put("backward", new Backward());
+        actionMap.put("right", new Right());
+        actionMap.put("left", new Left());
+
 
         callbackMap = new HashMap<>();
         actionKeycodeMap = new HashMap<>();
