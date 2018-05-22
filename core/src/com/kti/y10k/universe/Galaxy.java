@@ -70,6 +70,10 @@ public class Galaxy {
 
         float regularDensityConstant = GalaxyConstManager.requestConstant("regular_adj_density");
         galacticRadius = GalaxyConstManager.requestConstant("galaxy_radius");
+        galacticRadius *= Math.sqrt(
+                GalaxyConstManager.requestConstant("x_squish") *
+                GalaxyConstManager.requestConstant("z_squish")
+        );
         for (float i = 0; i < lim; i += randF() * Math.PI / regularDensityConstant) {
             float rad = galacticRadius / 2 * (randF2() + 0.1f);
             float x = (float) (Math.cos(i) * rad);
@@ -87,6 +91,8 @@ public class Galaxy {
         // TODO generate the point plane
         // is a point inside a polygon code:
         //https://www.codeproject.com/tips/84226/is-a-point-inside-a-polygon
+
+
 
         Logger.log(Logger.LogLevel.DEBUG, "Done Generating in " +
                 (System.currentTimeMillis() - begin) + "ms");
@@ -107,8 +113,7 @@ public class Galaxy {
     }
 
     public void renderAux(ShapeRenderer r) {
-        r.setColor(1,1,1,0.7f);
-        r.circle(0,0, galacticRadius, 500);
+
     }
 
     public List<String> asString() {

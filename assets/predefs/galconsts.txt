@@ -23,14 +23,14 @@ use_seed 0
 seed 1776
 
 # How many radians should the galaxy be long?
-spiral_length 9.42477796077
+spiral_length 9.7
 
 # How wide should a spiral radius be?
-spiral_radius 120
+spiral_radius 140
 
 # spiral peter
 # the larger this value, the harder the spiral will peter out
-spiral_peter 1.5
+spiral_peter .7
 
 # How fast should the spiral grow?
 # General equation for the spiral is r = a * theta ^ b

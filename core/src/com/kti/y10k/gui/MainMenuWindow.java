@@ -2,6 +2,7 @@ package com.kti.y10k.gui;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -33,6 +34,9 @@ public class MainMenuWindow extends WindowWrapper {
                 MainLoop.instance.inMenu = false;
                 MainLoop.instance.started = true;
                 MainLoop.instance.c = new Galaxy();
+                MainLoop.instance.getCamera().position.set(-30, 651, 30);
+                MainLoop.instance.getCamera().lookAt(0,0,0);
+
             }
         });
         WindowManager.components.addActor(newGame);
