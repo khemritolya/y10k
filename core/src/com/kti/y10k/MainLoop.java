@@ -45,6 +45,8 @@ public class MainLoop extends ApplicationAdapter {
 
 	public Galaxy c;
 
+	public Thread t;
+
 	public Listener listener;
 	private NameFactory nm;
 
@@ -55,6 +57,8 @@ public class MainLoop extends ApplicationAdapter {
 			Logger.log(Logger.LogLevel.INFO, "Initializing Camera and Batches...");
 
 			instance = this;
+
+			t = Thread.currentThread();
 			WIN_WIDTH = Gdx.graphics.getWidth();
 			WIN_HEIGHT = Gdx.graphics.getHeight();
 

@@ -87,7 +87,7 @@ public class Listener {
         Camera camera = MainLoop.instance.getCamera();
 
         if (MainLoop.instance.inMenu) {
-            camera.rotateAround(rotateAround, Vector3.Y, -2.5f * MainLoop.instance.dT);
+            camera.rotateAround(rotateAround, Vector3.Y, -1.5f * MainLoop.instance.dT);
         }
 
         if (!MainLoop.instance.inPrompt) {

@@ -3,7 +3,6 @@ package com.kti.y10k.io;
 import com.kti.y10k.MainLoop;
 import com.kti.y10k.universe.Star;
 import com.kti.y10k.utilities.Logger;
-import com.kti.y10k.utilities.managers.WindowManager;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,28 +14,6 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class SaveLoader {
-    public static int load() {
-        if (Files.notExists(Paths.get("save"))) {
-            Logger.log(Logger.LogLevel.ERROR, "Could not find save directory");
-            return 0;
-        }
-
-        Integer id = WindowManager.newTextInput("Galaxy name?", "MilkyWay", 0.45f, 0.45f);
-
-        while (!WindowManager.hasOutput(id)) {
-            try {
-                Thread.sleep(500);
-            } catch (Exception e) {
-                Logger.log(e.getStackTrace());
-            }
-        }
-
-        String name = WindowManager.requestOutput(id);
-        Path file = Paths.get("save/"+name+".gal");
-
-        return loadStars(file);
-    }
-
     public static int load(String name) {
         if (Files.notExists(Paths.get("save"))) {
             Logger.log(Logger.LogLevel.ERROR, "Could not find save directory");
@@ -45,10 +22,6 @@ public class SaveLoader {
 
         Path file = Paths.get("save/"+name+".gal");
 
-        return loadStars(file);
-    }
-
-    private static int loadStars(Path file) {
         try {
             if (!Files.exists(file)) {
                 Logger.log(Logger.LogLevel.ERROR, "File " + file.toString() + " not found!");
@@ -76,6 +49,8 @@ public class SaveLoader {
                     Logger.log(Logger.LogLevel.WARN, "Unknown Prefix in Save File!");
                 }
             }
+
+            Logger.log(Logger.LogLevel.DEBUG, "Loaded a galaxy of size " + stars.size());
 
             MainLoop.instance.c.set(stars);
 

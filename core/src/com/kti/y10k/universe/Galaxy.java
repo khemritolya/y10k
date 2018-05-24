@@ -74,13 +74,14 @@ public class Galaxy {
                 GalaxyConstManager.requestConstant("x_squish") *
                 GalaxyConstManager.requestConstant("z_squish")
         );
+
         for (float i = 0; i < lim; i += randF() * Math.PI / regularDensityConstant) {
             float rad = galacticRadius / 2 * (randF2() + 0.1f);
             float x = (float) (Math.cos(i) * rad);
             float y = 0;
             float z = (float) (Math.sin(i) * rad);
 
-            stars.add(new Star(x, y + err * 8 * (randF() - 0.5f) * (randF() - 0.5f),
+            stars.add(new Star(x, y + err * 6 * (randF() - 0.5f) * (randF() - 0.5f),
                     z, 1 + randF()));
         }
 

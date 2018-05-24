@@ -26,7 +26,7 @@ public class MainMenuWindow extends WindowWrapper {
     private TextButton loadGame;
 
     public MainMenuWindow() {
-        super("Menu",0.8f,0.4f,0.1f,0.2f);
+        super("Menu v0.04",0.8f,0.4f,0.1f,0.2f);
         newGame = new TextButton("New Galaxy", TextButtonHelper.textButtonStyle);
         newGame.addListener(new ClickListener() {
             @Override
@@ -49,25 +49,14 @@ public class MainMenuWindow extends WindowWrapper {
                 if (MainLoop.instance.started) {
                     MainLoop.instance.inMenu = false;
                 } else if (!Files.notExists(Paths.get("save"))) {
-                    Thread t = new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                if(SaveLoader.load("recent") == 1) {
-                                    Logger.log(Logger.LogLevel.INFO, "Saved Successfully!");
-                                    WindowManager.newPopup(
-                                            "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
-                                } else {
-                                    WindowManager.newPopup(
-                                            "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
-                                }
-                            } catch (Exception e) {
-                                Logger.log(e.getStackTrace());
-                            }
-                        }
-                    };
-
-                    t.start();
+                    if(SaveLoader.load("recent") == 1) {
+                        Logger.log(Logger.LogLevel.INFO, "Saved Successfully!");
+                        WindowManager.newPopup(
+                                "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
+                    } else {
+                        WindowManager.newPopup(
+                                "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
+                    }
                     MainLoop.instance.started = true;
                     MainLoop.instance.inMenu = false;
                 }
@@ -103,14 +92,23 @@ public class MainMenuWindow extends WindowWrapper {
                         @Override
                         public void run() {
                             try {
-                                if(SaveWriter.save() == 1) {
-                                    Logger.log(Logger.LogLevel.INFO, "Saved Successfully!");
+                                Integer id = WindowManager.newTextInput("Galaxy name?","MilkyWay", 0.45f, 0.45f);
+
+                                while (!WindowManager.hasOutput(id)) {
+                                    Thread.sleep(50);
+                                }
+
+                                MainLoop.instance.t.suspend();
+
+                                if (SaveWriter.save(WindowManager.requestOutput(id)) == 1) {
                                     WindowManager.newPopup(
-                                            "Galaxy Saved \nSuccessfully", 0.45f, 0.45f);
+                                            "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
                                 } else {
                                     WindowManager.newPopup(
-                                            "Error: Save Galaxy! \n Check Logs!", 0.45f, 0.45f);
+                                            "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
                                 }
+
+                                MainLoop.instance.t.resume();
                             } catch (Exception e) {
                                 Logger.log(e.getStackTrace());
                             }
@@ -131,7 +129,15 @@ public class MainMenuWindow extends WindowWrapper {
                     @Override
                     public void run() {
                         try {
-                            if(SaveLoader.load() == 1) {
+                            Integer id = WindowManager.newTextInput("Galaxy name?","MilkyWay", 0.45f, 0.45f);
+
+                            while (!WindowManager.hasOutput(id)) {
+                                Thread.sleep(50);
+                            }
+
+                            MainLoop.instance.t.suspend();
+
+                            if(SaveLoader.load(WindowManager.requestOutput(id)) == 1) {
                                 Logger.log(Logger.LogLevel.INFO, "Saved Successfully!");
                                 WindowManager.newPopup(
                                         "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
@@ -139,6 +145,8 @@ public class MainMenuWindow extends WindowWrapper {
                                 WindowManager.newPopup(
                                         "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
                             }
+
+                            MainLoop.instance.t.resume();
                         } catch (Exception e) {
                             Logger.log(e.getStackTrace());
                         }

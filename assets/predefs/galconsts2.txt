@@ -1,0 +1,56 @@
+#
+# y10k galconsts file
+#
+# Want to change the values that y10k uses to generate the galaxy?
+#
+# Well, here they are. Go nuts, but at your own risk
+#
+# See Galaxy.java for how they are used
+# see GalaxyConstManager.java for the manager
+#
+# Format:
+#
+# [Const Name] [Number Value]
+#
+
+# Use a seed for generating new galaxies
+# 0 = no
+# 1 = yes
+use_seed 0
+
+# The seed RNGesus uses to generate the galaxy
+# if specified
+seed 1776
+
+# How many radians should the galaxy be long?
+spiral_length 9.42477796077
+
+# How wide should a spiral radius be?
+spiral_radius 120
+
+# spiral peter
+# the larger this value, the harder the spiral will peter out
+spiral_peter 1
+
+# How fast should the spiral grow?
+# General equation for the spiral is r = a * theta ^ b
+# where a = expansion_factor and b = expansion exponent
+expansion_exponent .6
+expansion_factor 750
+
+# How dense should the spiral be?
+spiral_adj_density 1000
+
+# How dense should the core be?
+core_adj_density 10
+
+# How large should the non-spiral disk of stars be?
+galaxy_radius 3200
+
+# How dense should the average non-spiral stars be?
+regular_adj_density 2000
+
+# Squish constants, I have them at 1, but you may want to mess around w/ them
+x_squish 1
+y_squish 1
+z_squish 1

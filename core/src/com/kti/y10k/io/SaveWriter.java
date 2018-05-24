@@ -14,7 +14,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 public class SaveWriter {
-    public static int save() {
+    public static int save(String in) {
         if (Files.notExists(Paths.get("save"))) {
             File saveDir = new File("save");
             if(!saveDir.mkdir()) {
@@ -23,19 +23,7 @@ public class SaveWriter {
             }
         }
 
-        Integer id = WindowManager.newTextInput("Galaxy name?","MilkyWay", 0.45f, 0.45f);
-
-        while (!WindowManager.hasOutput(id)) {
-            try {
-                Thread.sleep(500);
-            } catch (Exception e) {
-                Logger.log(e.getStackTrace());
-            }
-        }
-
-        String name = WindowManager.requestOutput(id);
-
-        Path file0 = Paths.get("save/"+name+".gal");
+        Path file0 = Paths.get("save/"+in+".gal");
         Path file1 = Paths.get("save/recent.gal");
 
         try {
