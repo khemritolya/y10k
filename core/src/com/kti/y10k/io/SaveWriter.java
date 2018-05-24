@@ -1,9 +1,7 @@
 package com.kti.y10k.io;
 
 import com.kti.y10k.MainLoop;
-import com.kti.y10k.universe.Star;
 import com.kti.y10k.utilities.Logger;
-import com.kti.y10k.utilities.managers.WindowManager;
 
 import java.io.File;
 import java.nio.charset.Charset;

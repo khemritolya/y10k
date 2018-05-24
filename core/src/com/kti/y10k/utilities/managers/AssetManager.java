@@ -1,12 +1,10 @@
 package com.kti.y10k.utilities.managers;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.kti.y10k.utilities.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.StringTokenizer;
