@@ -20,6 +20,9 @@ Design Work:
 Sound:
  - Ben Lepper
 
+Galaxy Generation Constants:
+  - Ecnal 
+ 
 Engine in libGDX (http://libgdx.badlogicgames.com/)
 
 Used GIMP for assets (https://www.gimp.org/)
