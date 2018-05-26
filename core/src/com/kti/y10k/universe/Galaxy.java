@@ -156,12 +156,24 @@ public class Galaxy {
                     v.y * galacticRadius / conv_fac, vertices));
         }
 
-        // TODO generate the point plane
-        // is a point inside a polygon code:
-        //https://www.codeproject.com/tips/84226/is-a-point-inside-a-polygon
+        fit();
 
         Logger.log(Logger.LogLevel.DEBUG, "Done Generating in " +
                 (System.currentTimeMillis() - begin) + "ms");
+    }
+
+    private boolean contains(Star test, Sector x) {
+        Vector2[] vertx = x.getVertices();
+        int i, j;
+        boolean result = false;
+        for (i = 0, j = vertx.length - 1; i < vertx.length; j = i++) {
+            if ((vertx[i].y > test.pos().z) != (vertx[j].y > test.pos().z) &&
+                    (test.pos().x < (vertx[j].x - vertx[i].x) * (test.pos().z - vertx[i].y) /
+                            (vertx[j].y -vertx[i].y) + vertx[i].x)) {
+                result = !result;
+            }
+        }
+        return result;
     }
 
     public int size() {
@@ -176,11 +188,21 @@ public class Galaxy {
 
     public void renderStars(SpriteBatch batch, Camera c) {
         for (Star s:stars) s.render(batch, c);
-        for (Sector s:sectors) s.draw(batch, c);
+        for (Sector s:sectors) s.render(batch, c);
     }
 
     public void renderAux(ShapeRenderer r) {
-        for (Sector s:sectors) s.draw(r);
+        for (Sector s:sectors) s.render(r);
+    }
+
+    private void fit() {
+        for (Star s:stars) {
+            for (Sector x:sectors) {
+                if (contains(s, x)) {
+                    x.addStar(s);
+                }
+            }
+        }
     }
 
     public List<String> asString() {
@@ -193,6 +215,8 @@ public class Galaxy {
     public void set(List<Star> stars, List<Sector> sectors) {
         this.stars = stars;
         this.sectors = sectors;
+
+        fit();
     }
 
     public void release() {

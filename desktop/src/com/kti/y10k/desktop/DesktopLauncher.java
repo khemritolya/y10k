@@ -75,7 +75,7 @@ public class DesktopLauncher extends JFrame implements ActionListener {
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
-		config.title = "y10k";
+		config.title = "y10k " + version;
 
 		String[] res = ((String)resolutionSelector.getSelectedItem()).split("x");
 		config.width = Integer.parseInt(res[0]);

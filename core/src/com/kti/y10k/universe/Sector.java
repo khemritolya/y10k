@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -13,6 +14,10 @@ import com.kti.y10k.gui.helpers.TextButtonHelper;
 import com.kti.y10k.utilities.Logger;
 import com.kti.y10k.utilities.managers.WindowManager;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class Sector {
     private Sector self;
@@ -21,6 +26,7 @@ public class Sector {
     private TextButton t;
     private String name;
     private float[] vertices;
+    private List<Star> stars;
 
     private static Vector3 use0 = new Vector3(0,0,0);
     private static Vector3 use1 = new Vector3(0,0,0);
@@ -49,6 +55,8 @@ public class Sector {
         });
 
         WindowManager.components.addActor(t);
+
+        stars = new ArrayList<>();
     }
 
     public Sector(String name, float x, float z, float[] vertices) {
@@ -72,10 +80,11 @@ public class Sector {
         });
 
         WindowManager.components.addActor(t);
+
+        stars = new ArrayList<>();
     }
 
-
-    public void draw(SpriteBatch s, Camera camera) {
+    public void render(SpriteBatch s, Camera camera) {
         if (!MainLoop.instance.inMenu) {
             use0.x = camera.position.x + camera.direction.x;
             use0.y = camera.position.y + camera.direction.y;
@@ -92,9 +101,13 @@ public class Sector {
                 t.draw(s, 1f);
             }
         }
+
+        if (MainLoop.instance.listener.selected == self && Star.DEBUG_STARS_POSITIONS) {
+            for (Star x:stars) x.renderColor(s, camera, Color.BLUE);
+        }
     }
 
-    public void draw(ShapeRenderer r) {
+    public void render(ShapeRenderer r) {
         float dst = position.dst(MainLoop.instance.getCamera().position);
 
         r.setColor(Color.GRAY.r, Color.GRAY.g, Color.GRAY.b, 1.0f < 600 / dst ?
@@ -102,8 +115,22 @@ public class Sector {
         r.polygon(vertices);
     }
 
+    public void addStar(Star s) {
+        stars.add(s);
+    }
+
     @Override
     public String toString() {
         return "Sector " + name + " " + position.x + " " + position.z;
+    }
+
+    public Vector2[] getVertices() {
+        Vector2[] out = new Vector2[6];
+
+        for (int i = 0; i < 6; i++) {
+            out[i] = new Vector2(vertices[2*i], vertices[2 * i + 1]);
+        }
+
+        return out;
     }
 }

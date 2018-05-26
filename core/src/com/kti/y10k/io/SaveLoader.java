@@ -2,18 +2,17 @@ package com.kti.y10k.io;
 
 import com.badlogic.gdx.math.Vector2;
 import com.kti.y10k.MainLoop;
+import com.kti.y10k.universe.Galaxy;
 import com.kti.y10k.universe.Sector;
 import com.kti.y10k.universe.Star;
 import com.kti.y10k.utilities.Logger;
+import com.kti.y10k.utilities.managers.GalaxyConstManager;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class SaveLoader {
     public static int load(String name) {
@@ -36,6 +35,10 @@ public class SaveLoader {
             List<Star> stars = new ArrayList<>();
             List<Sector> sectors = new ArrayList<>();
 
+            float galacticRadius = GalaxyConstManager.requestConstant("galaxy_radius");
+            float conv_fac = GalaxyConstManager.requestConstant("sector_to_galrad");
+            float rat = galacticRadius / conv_fac;
+
             while (s.hasNextLine()) {
                 StringTokenizer st = new StringTokenizer(s.nextLine());
                 String f = st.nextToken();
@@ -57,12 +60,12 @@ public class SaveLoader {
                     float z = Float.parseFloat(st.nextToken());
 
                     float[] vertices = {
-                            x - 0.5f, z + sq3 /2,
-                            x - 1, z,
-                            x - 0.5f, z - sq3 / 2,
-                            x + 0.5f, z - sq3 / 2,
-                            x + 1, z,
-                            x + 0.5f, z + sq3 / 2
+                            x - 0.5f * rat, z + sq3 / 2  * rat,
+                            x -  rat, z,
+                            x - 0.5f * rat, z - sq3 / 2 * rat,
+                            x + 0.5f * rat, z - sq3 / 2 * rat,
+                            x + rat, z,
+                            x + 0.5f * rat, z + sq3 / 2  * rat
                     };
 
                     sectors.add(new Sector(n, x, z, vertices));

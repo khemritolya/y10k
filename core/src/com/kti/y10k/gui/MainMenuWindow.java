@@ -117,10 +117,10 @@ public class MainMenuWindow extends WindowWrapper {
 
                             if (SaveWriter.save(WindowManager.requestOutput(id)) == 1) {
                                 WindowManager.newPopup(
-                                        "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
+                                        "Galaxy Saved \nSuccessfully", 0.45f, 0.45f);
                             } else {
                                 WindowManager.newPopup(
-                                        "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
+                                        "Error: Save Galaxy! \n Check Logs!", 0.45f, 0.45f);
                             }
 
                             MainLoop.instance.started = true;
@@ -161,7 +161,7 @@ public class MainMenuWindow extends WindowWrapper {
                         MainLoop.instance.t.suspend();
 
                         if(SaveLoader.load(WindowManager.requestOutput(id)) == 1) {
-                            Logger.log(Logger.LogLevel.INFO, "Saved Successfully!");
+                            Logger.log(Logger.LogLevel.INFO, "Loaded Successfully!");
                             WindowManager.newPopup(
                                     "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
                         } else {
