@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector3;
+import com.kti.y10k.universe.Sector;
 import com.kti.y10k.utilities.Logger;
 import com.kti.y10k.MainLoop;
 import com.kti.y10k.utilities.managers.WindowManager;
@@ -26,6 +27,7 @@ public class Listener {
     private Integer[] callbacks;
 
     public Vector3 rotateAround;
+    public Sector selected;
 
     public Listener() {
         keyMap = new HashMap<>();

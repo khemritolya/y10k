@@ -1,11 +1,9 @@
 package com.kti.y10k.universe;
 
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.kti.y10k.utilities.Logger;
 import com.kti.y10k.utilities.managers.GalaxyConstManager;
 
@@ -98,7 +96,8 @@ public class Galaxy {
 
         pos.add(new Vector2(0,0));
 
-        for (int i = 1; i < 20; i++) {
+        float iter = GalaxyConstManager.requestConstant("sector_loops");
+        for (int i = 1; i < iter; i++) {
             float x = 0;
             float y = i * sq3;
 
@@ -132,12 +131,14 @@ public class Galaxy {
                 pos.add(new Vector2(x,y));
             }
 
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j < i - 1; j++) {
                 y += sq3 / 2;
                 x -= 1.5;
                 pos.add(new Vector2(x,y));
             }
         }
+
+        float conv_fac = GalaxyConstManager.requestConstant("sector_to_galrad");
 
         for (Vector2 v:pos) {
             float[] vertices = {
@@ -149,10 +150,10 @@ public class Galaxy {
                     v.x + 0.5f, v.y + sq3 / 2
             };
 
-            for (int i = 0; i < vertices.length; i++) vertices[i] *= galacticRadius / 30;
+            for (int i = 0; i < vertices.length; i++) vertices[i] *= galacticRadius / conv_fac;
 
-            sectors.add(new Sector(v.x * galacticRadius / 30,
-                    v.y * galacticRadius / 30, vertices));
+            sectors.add(new Sector(v.x * galacticRadius / conv_fac,
+                    v.y * galacticRadius / conv_fac, vertices));
         }
 
         // TODO generate the point plane
@@ -185,11 +186,13 @@ public class Galaxy {
     public List<String> asString() {
         List<String> out = new ArrayList<>();
         for (Star s:stars) out.add(s.toString());
+        for (Sector s:sectors) out.add(s.toString());
         return out;
     }
 
-    public void set(List<Star> stars) {
+    public void set(List<Star> stars, List<Sector> sectors) {
         this.stars = stars;
+        this.sectors = sectors;
     }
 
     public void release() {

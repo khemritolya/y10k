@@ -46,7 +46,7 @@ public class MainLoop extends ApplicationAdapter {
 	public Thread t;
 
 	public Listener listener;
-	private NameFactory nm;
+	public NameFactory nm;
 
 	@Override
 	public void create () {

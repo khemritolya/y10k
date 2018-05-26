@@ -26,7 +26,7 @@ public class TextInputWindow extends WindowWrapper {
 
         self = this;
 
-        close = new TextButton("Ok", TextButtonHelper.textButtonStyle);
+        close = new TextButton("Ok", TextButtonHelper.common);
         close.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

@@ -1,6 +1,8 @@
 package com.kti.y10k.io;
 
+import com.badlogic.gdx.math.Vector2;
 import com.kti.y10k.MainLoop;
+import com.kti.y10k.universe.Sector;
 import com.kti.y10k.universe.Star;
 import com.kti.y10k.utilities.Logger;
 
@@ -28,12 +30,16 @@ public class SaveLoader {
                 throw new IOException("File " + file.toString() + " not found!");
             }
 
+            float sq3 = (float) Math.sqrt(3);
+
             Scanner s = new Scanner(file.toFile());
             List<Star> stars = new ArrayList<>();
+            List<Sector> sectors = new ArrayList<>();
 
             while (s.hasNextLine()) {
                 StringTokenizer st = new StringTokenizer(s.nextLine());
-                if (st.nextToken().endsWith("Star")) {
+                String f = st.nextToken();
+                if (f.endsWith("Star")) {
                     float x = Float.parseFloat(st.nextToken());
                     float y = Float.parseFloat(st.nextToken());
                     float z = Float.parseFloat(st.nextToken());
@@ -45,6 +51,21 @@ public class SaveLoader {
                         Star star = new Star(x,y,z,sizeMod);
                         stars.add(star);
                     }
+                } else if (f.endsWith("Sector")) {
+                    String n = st.nextToken() + " " + st.nextToken();
+                    float x = Float.parseFloat(st.nextToken());
+                    float z = Float.parseFloat(st.nextToken());
+
+                    float[] vertices = {
+                            x - 0.5f, z + sq3 /2,
+                            x - 1, z,
+                            x - 0.5f, z - sq3 / 2,
+                            x + 0.5f, z - sq3 / 2,
+                            x + 1, z,
+                            x + 0.5f, z + sq3 / 2
+                    };
+
+                    sectors.add(new Sector(n, x, z, vertices));
                 } else {
                     Logger.log(Logger.LogLevel.WARN, "Unknown Prefix in Save File!");
                 }
@@ -52,7 +73,7 @@ public class SaveLoader {
 
             Logger.log(Logger.LogLevel.DEBUG, "Loaded a galaxy of size " + stars.size());
 
-            MainLoop.instance.c.set(stars);
+            MainLoop.instance.c.set(stars, sectors);
 
             return 1;
         } catch (Exception e) {

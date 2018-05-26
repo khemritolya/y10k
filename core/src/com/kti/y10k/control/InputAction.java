@@ -59,8 +59,10 @@ class MainMenu extends InputAction {
                 MainLoop.instance.inMenu = false;
 
                 MainLoop.instance.getCamera().position.set(400, 651, 0);
-                MainLoop.instance.getCamera().lookAt(0,0,0);
+                MainLoop.instance.getCamera().lookAt(Vector3.Zero);
+                MainLoop.instance.getCamera().position.add(-200, 0,0);
                 MainLoop.instance.getCamera().up.set(Vector3.Y);
+                MainLoop.instance.listener.rotateAround = Vector3.Zero;
             }
         } else {
             MainLoop.instance.inMenu = true;
@@ -73,7 +75,9 @@ class MainMenu extends InputAction {
 
             MainLoop.instance.getCamera().position.set(
                     posStart.get((int) (Math.random() * posStart.size())));
-            MainLoop.instance.getCamera().lookAt(0f, 0f, 0f);
+            MainLoop.instance.getCamera().lookAt(Vector3.Zero);
+            MainLoop.instance.listener.rotateAround = Vector3.Zero;
+            MainLoop.instance.listener.selected = null;
         }
     }
 

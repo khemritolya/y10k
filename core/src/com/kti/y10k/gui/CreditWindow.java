@@ -14,7 +14,7 @@ public class CreditWindow extends WindowWrapper {
     public CreditWindow() {
         super("Credits",0.13f, 0.4f,0.10f,0.17f);
 
-        close = new TextButton("Close", TextButtonHelper.textButtonStyle);
+        close = new TextButton("Close", TextButtonHelper.common);
         close.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
