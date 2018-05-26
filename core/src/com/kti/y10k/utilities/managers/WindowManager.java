@@ -9,6 +9,7 @@ import com.kti.y10k.MainLoop;
 import com.kti.y10k.gui.*;
 import com.kti.y10k.gui.helpers.TextButtonHelper;
 import com.kti.y10k.gui.helpers.TextFieldHelper;
+import com.kti.y10k.utilities.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +67,11 @@ public class WindowManager {
     }
 
     public static void removeLastPopup() {
+        try {
         popwin.remove(popwin.size() - 1);
+        } catch (Exception e) {
+            Logger.log(e.getStackTrace());
+        }
     }
 
     public static Integer newTextInput(String prompt, String defaultRes, float x, float y) {

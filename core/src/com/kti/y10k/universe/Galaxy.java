@@ -1,17 +1,19 @@
 package com.kti.y10k.universe;
 
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.kti.y10k.utilities.Logger;
 import com.kti.y10k.utilities.managers.GalaxyConstManager;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Galaxy {
     private List<Star> stars = new ArrayList<>();
+    private List<Sector> sectors = new ArrayList<>();
     private Random r;
     private float galacticRadius;
 
@@ -89,11 +91,73 @@ public class Galaxy {
         for (Star s:stars) if (!s.verify()) toRemove.add(s);
         for (Star s:toRemove) stars.remove(s);
 
+        sectors.clear();
+
+        List<Vector2> pos = new ArrayList<>();
+        float sq3 = (float)Math.sqrt(3);
+
+        pos.add(new Vector2(0,0));
+
+        for (int i = 1; i < 20; i++) {
+            float x = 0;
+            float y = i * sq3;
+
+            pos.add(new Vector2(x,y));
+
+            for (int j = 0; j < i; j++) {
+                x -= 1.5;
+                y -= sq3 / 2;
+                pos.add(new Vector2(x,y));
+            }
+
+            for (int j = 0; j < i; j++) {
+                y -= sq3;
+                pos.add(new Vector2(x,y));
+            }
+
+            for (int j = 0; j < i; j++) {
+                x += 1.5;
+                y -= sq3 / 2;
+                pos.add(new Vector2(x,y));
+            }
+
+            for (int j = 0; j < i; j++) {
+                x += 1.5;
+                y += sq3 / 2;
+                pos.add(new Vector2(x,y));
+            }
+
+            for (int j = 0; j < i; j++) {
+                y += sq3;
+                pos.add(new Vector2(x,y));
+            }
+
+            for (int j = 0; j < i; j++) {
+                y += sq3 / 2;
+                x -= 1.5;
+                pos.add(new Vector2(x,y));
+            }
+        }
+
+        for (Vector2 v:pos) {
+            float[] vertices = {
+                    v.x - 0.5f, v.y + sq3 /2,
+                    v.x - 1, v.y,
+                    v.x - 0.5f, v.y - sq3 / 2,
+                    v.x + 0.5f, v.y - sq3 / 2,
+                    v.x + 1, v.y,
+                    v.x + 0.5f, v.y + sq3 / 2
+            };
+
+            for (int i = 0; i < vertices.length; i++) vertices[i] *= galacticRadius / 30;
+
+            sectors.add(new Sector(v.x * galacticRadius / 30,
+                    v.y * galacticRadius / 30, vertices));
+        }
+
         // TODO generate the point plane
         // is a point inside a polygon code:
         //https://www.codeproject.com/tips/84226/is-a-point-inside-a-polygon
-
-
 
         Logger.log(Logger.LogLevel.DEBUG, "Done Generating in " +
                 (System.currentTimeMillis() - begin) + "ms");
@@ -111,10 +175,11 @@ public class Galaxy {
 
     public void renderStars(SpriteBatch batch, Camera c) {
         for (Star s:stars) s.render(batch, c);
+        for (Sector s:sectors) s.draw(batch, c);
     }
 
     public void renderAux(ShapeRenderer r) {
-
+        for (Sector s:sectors) s.draw(r);
     }
 
     public List<String> asString() {

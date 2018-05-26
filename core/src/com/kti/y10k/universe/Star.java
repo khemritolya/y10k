@@ -11,7 +11,7 @@ import com.kti.y10k.utilities.managers.GalaxyConstManager;
 public class Star {
     private static final TextureRegion STAR_TEXTURE = new TextureRegion(AssetManager.requestTexture("star"));
     private static final float STAR_SIZE = 60.0f;
-    private static final boolean DEBUG_STARS_POSITIONS = false;
+    public static final boolean DEBUG_STARS_POSITIONS = false;
 
     private static Vector3 use0 = new Vector3(0,0,0);
     private static Vector3 use1 = new Vector3(0,0,0);
@@ -27,7 +27,15 @@ public class Star {
         this.sizeMod = sizeMod;
     }
 
+    public Star(Vector3 v, float sizeMod) {
+        this(v.x, v.y, v.z, sizeMod);
+    }
+
     public void render(SpriteBatch batch, Camera camera) {
+        renderColor(batch, camera, batch.getColor());
+    }
+
+    public void renderColor(SpriteBatch batch, Camera camera, Color x) {
         use0.x = camera.position.x + camera.direction.x;
         use0.y = camera.position.y + camera.direction.y;
         use0.z = camera.position.z + camera.direction.z;
@@ -43,9 +51,8 @@ public class Star {
             Color c = batch.getColor();
 
             if (STAR_SIZE / dst > 2.0f) {
-                //TODO neat color things?
 
-                batch.setColor(c.r, c.g, c.b, c.a);
+                batch.setColor(x.r, x.g, x.b, c.a);
 
                 batch.draw(STAR_TEXTURE,
                         use1.x - STAR_SIZE / 2 / dst * sizeMod,
@@ -53,13 +60,17 @@ public class Star {
                         STAR_SIZE / dst * sizeMod,
                         STAR_SIZE / dst * sizeMod);
             } else {
-                batch.setColor(c.r, c.g, c.b, 1.0f < 600 / dst ? 1.0f : DEBUG_STARS_POSITIONS ? 1.0f : 600 / dst);
+                batch.setColor(x.r, x.g, x.b, 1.0f < 600 / dst ? 1.0f : DEBUG_STARS_POSITIONS ? 1.0f : 600 / dst);
                 batch.draw(STAR_TEXTURE, use1.x - 1 * sizeMod, use1.y - 1 * sizeMod,
                         2 * sizeMod, 2 * sizeMod);
             }
 
             batch.setColor(c);
         }
+    }
+
+    public Vector3 pos() {
+        return position;
     }
 
     @Override
