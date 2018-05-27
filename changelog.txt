@@ -29,4 +29,23 @@ y10k changelog
 
 - v0.04 "Vulcan"
 
+  Added Sectors
+    - Regular Hexagons
+    - Added Stars to sectors
+    - Added a SectorInfoWindow (obv. additions in future releases)
+
   Made some edits to galaxy generation
+
+  Added settings.txt
+    -  You can change the volume now!
+
+  Overhauled save/loading multithreading code
+    - Added compatibility w/ sectors
+
+  Bugfixes in resume/esc
+    - Everything should work as intended
+    - Phony/Ecnal
+
+  Updated Installation Instructions in Readme
+
+  Some other QoL changes

@@ -31,6 +31,7 @@ Sound:
 
 Galaxy Generation Constants:
   - Ecnal 
+  - Phony
  
 ## Other notes 
  

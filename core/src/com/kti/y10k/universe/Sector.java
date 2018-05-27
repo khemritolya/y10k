@@ -140,4 +140,8 @@ public class Sector {
     public String getName() {
         return name;
     }
+
+    public int getStarCount() {
+        return stars.size();
+    }
 }
