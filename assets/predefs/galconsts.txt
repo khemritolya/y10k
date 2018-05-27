@@ -1,6 +1,6 @@
 #
 # y10k galconsts file
-# Revision 0.04 D
+# Revision 0.04 E
 #
 # Want to change the values that y10k uses to generate the galaxy?
 #

@@ -1,0 +1,14 @@
+#
+# The y10k settings file
+# Revision 0.04 A
+#
+# Use this to customize your y10k experience
+# while I work on a proper way to do this.
+#
+# Format:
+#
+# [setting] [value]
+#
+
+# How loud should the music be?
+music-volume 0.10

@@ -16,6 +16,7 @@ import com.kti.y10k.utilities.Logger;
 import com.kti.y10k.utilities.NameFactory;
 import com.kti.y10k.utilities.managers.AssetManager;
 import com.kti.y10k.utilities.managers.GalaxyConstManager;
+import com.kti.y10k.utilities.managers.SettingsManager;
 import com.kti.y10k.utilities.managers.WindowManager;
 
 import java.util.ArrayList;
@@ -101,6 +102,10 @@ public class MainLoop extends ApplicationAdapter {
 				System.exit(0);
 			}
 
+			if (SettingsManager.init() != 1) {
+				System.exit(0);
+			}
+
 			WindowManager.init();
 
 			nm = new NameFactory("assets/predefs/constellations.txt", 2, 6);
@@ -111,7 +116,7 @@ public class MainLoop extends ApplicationAdapter {
 
 			try {
 				sound = Gdx.audio.newSound(Gdx.files.internal("assets/audio/audio.mp3"));
-				soundID = sound.play(0.15f);
+				soundID = sound.play(SettingsManager.requestSetting("music-volume"));
 				sound.setLooping(soundID, true);
 
 			} catch (Exception e) {
