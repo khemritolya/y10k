@@ -15,7 +15,6 @@ import com.kti.y10k.utilities.Logger;
 import com.kti.y10k.utilities.managers.WindowManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -85,6 +84,10 @@ public class Sector {
     }
 
     public void render(SpriteBatch s, Camera camera) {
+        if (MainLoop.instance.listener.selected == self && Star.DEBUG_STARS_POSITIONS) {
+            for (Star x:stars) x.renderColor(s, camera, Color.BLUE);
+        }
+
         if (!MainLoop.instance.inMenu) {
             use0.x = camera.position.x + camera.direction.x;
             use0.y = camera.position.y + camera.direction.y;
@@ -101,10 +104,6 @@ public class Sector {
                 t.draw(s, 1f);
             }
         }
-
-        if (MainLoop.instance.listener.selected == self && Star.DEBUG_STARS_POSITIONS) {
-            for (Star x:stars) x.renderColor(s, camera, Color.BLUE);
-        }
     }
 
     public void render(ShapeRenderer r) {
@@ -117,6 +116,10 @@ public class Sector {
 
     public void addStar(Star s) {
         stars.add(s);
+    }
+
+    public boolean atPoint(float x, float z) {
+        return  (x - position.x < 0.001 && z - position.z < 0.001);
     }
 
     @Override
@@ -132,5 +135,9 @@ public class Sector {
         }
 
         return out;
+    }
+
+    public String getName() {
+        return name;
     }
 }

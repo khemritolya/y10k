@@ -63,6 +63,7 @@ class MainMenu extends InputAction {
                 MainLoop.instance.getCamera().position.add(-200, 0,0);
                 MainLoop.instance.getCamera().up.set(Vector3.Y);
                 MainLoop.instance.listener.rotateAround = Vector3.Zero;
+                MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
             }
         } else {
             MainLoop.instance.inMenu = true;

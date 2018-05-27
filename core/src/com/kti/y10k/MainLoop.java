@@ -35,6 +35,7 @@ public class MainLoop extends ApplicationAdapter {
 
 	private ShapeRenderer renderer;
 	public BitmapFont font;
+	public BitmapFont font2;
 	private SpriteBatch uiBatch;
 	private SpriteBatch starBatch;
 
@@ -82,6 +83,9 @@ public class MainLoop extends ApplicationAdapter {
 			FreeTypeFontGenerator.FreeTypeFontParameter ftfp = new FreeTypeFontGenerator.FreeTypeFontParameter();
 			ftfp.size = (int) (WIN_HEIGHT * 0.015f);
 			font = f.generateFont(ftfp);
+			ftfp.borderColor = Color.BLACK;
+			ftfp.borderWidth = 2;
+			font2 = f.generateFont(ftfp);
 			f.dispose();
 
 			starBatch = new SpriteBatch();
@@ -139,15 +143,14 @@ public class MainLoop extends ApplicationAdapter {
 
 		camera.update();
 
-		renderer.setProjectionMatrix(camera.combined);
-		renderer.begin(ShapeRenderer.ShapeType.Line);
-		if (!inMenu)
-			c.renderAux(renderer);
-		renderer.end();
-
 		starBatch.begin();
 		c.renderStars(starBatch, camera);
 		starBatch.end();
+
+		renderer.setProjectionMatrix(camera.combined);
+		renderer.begin(ShapeRenderer.ShapeType.Line);
+		if (!inMenu) c.renderAux(renderer);
+		renderer.end();
 
 		uiBatch.begin();
 

@@ -1,5 +1,7 @@
 package com.kti.y10k.utilities;
 
+import com.kti.y10k.utilities.managers.GalaxyConstManager;
+
 import java.util.Random;
 
 import java.io.BufferedReader;
@@ -27,7 +29,11 @@ public class NameFactory {
     public NameFactory(String filename, int look_ahead, int target_length) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
-            randy = new Random();
+            if (0 != GalaxyConstManager.requestConstant("use_seed"))
+                randy = new Random((int)GalaxyConstManager.requestConstant("seed"));
+            else
+                randy = new Random();
+
             metaChances = new HashMap<String, HashMap<Character, Double>>();
             lookAhead = look_ahead;
             targetLength = target_length;

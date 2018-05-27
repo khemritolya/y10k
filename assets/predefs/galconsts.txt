@@ -17,7 +17,7 @@
 # Use a seed for generating new galaxies
 # 0 = no
 # 1 = yes
-use_seed 0
+use_seed 1
 
 # The seed RNGesus uses to generate the galaxy
 # if specified

@@ -65,4 +65,12 @@ public abstract class WindowWrapper {
     public void setVisible(boolean visible) {
         this.isVisible = visible;
     }
+
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setTitle(String n) {
+        title = n;
+    }
 }

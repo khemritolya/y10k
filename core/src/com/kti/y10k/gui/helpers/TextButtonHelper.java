@@ -1,6 +1,7 @@
 package com.kti.y10k.gui.helpers;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.kti.y10k.MainLoop;
 
@@ -15,7 +16,7 @@ public class TextButtonHelper {
         common.downFontColor = Color.LIGHT_GRAY;
 
         alternate = new TextButton.TextButtonStyle();
-        alternate.font = MainLoop.instance.font;
+        alternate.font = MainLoop.instance.font2;;
         alternate.fontColor = Color.GOLD;
         alternate.downFontColor = Color.GOLDENROD;
     }

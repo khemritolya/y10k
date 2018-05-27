@@ -36,6 +36,10 @@ public class SaveLoader {
             List<Sector> sectors = new ArrayList<>();
 
             float galacticRadius = GalaxyConstManager.requestConstant("galaxy_radius");
+            galacticRadius *= Math.sqrt(
+                    GalaxyConstManager.requestConstant("x_squish") *
+                            GalaxyConstManager.requestConstant("z_squish")
+            );
             float conv_fac = GalaxyConstManager.requestConstant("sector_to_galrad");
             float rat = galacticRadius / conv_fac;
 

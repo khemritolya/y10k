@@ -195,6 +195,14 @@ public class Galaxy {
         for (Sector s:sectors) s.render(r);
     }
 
+    public Sector getAt(float x, float z) {
+        for (Sector s:sectors) {
+            if (s.atPoint(x, z)) return s;
+        }
+
+        return null;
+    }
+
     private void fit() {
         for (Star s:stars) {
             for (Sector x:sectors) {

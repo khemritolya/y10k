@@ -33,13 +33,14 @@ public class MainMenuWindow extends WindowWrapper {
         newGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                MainLoop.instance.inMenu = false;
-                MainLoop.instance.started = true;
-                MainLoop.instance.c = new Galaxy();
-                MainLoop.instance.getCamera().position.set(400, 651, 0);
-                MainLoop.instance.getCamera().lookAt(0,0,0);
-                MainLoop.instance.getCamera().up.set(Vector3.Y);
+            MainLoop.instance.inMenu = false;
+            MainLoop.instance.started = true;
+            MainLoop.instance.c = new Galaxy();
+            MainLoop.instance.getCamera().position.set(400, 651, 0);
+            MainLoop.instance.getCamera().lookAt(0,0,0);
+            MainLoop.instance.getCamera().up.set(Vector3.Y);
 
+            MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
             }
         });
         WindowManager.components.addActor(newGame);
@@ -48,33 +49,37 @@ public class MainMenuWindow extends WindowWrapper {
         resumeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (MainLoop.instance.started) {
-                    if (MainLoop.instance.inMenu) {
-                        MainLoop.instance.inMenu = false;
-
-                        MainLoop.instance.getCamera().position.set(400, 651, 0);
-                        MainLoop.instance.getCamera().lookAt(0,0,0);
-                        MainLoop.instance.getCamera().position.add(-200, 0,0);
-                        MainLoop.instance.getCamera().up.set(Vector3.Y);
-                    }
-                    } else if (!Files.notExists(Paths.get("save"))) {
-                    if(SaveLoader.load("recent") == 1) {
-                        Logger.log(Logger.LogLevel.INFO, "Saved Successfully!");
-                        WindowManager.newPopup(
-                                "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
-                    } else {
-                        WindowManager.newPopup(
-                                "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
-                    }
-
-                    MainLoop.instance.started = true;
+            if (MainLoop.instance.started) {
+                if (MainLoop.instance.inMenu) {
                     MainLoop.instance.inMenu = false;
 
                     MainLoop.instance.getCamera().position.set(400, 651, 0);
                     MainLoop.instance.getCamera().lookAt(0,0,0);
                     MainLoop.instance.getCamera().position.add(-200, 0,0);
                     MainLoop.instance.getCamera().up.set(Vector3.Y);
+
+                    MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
                 }
+            } else if (!Files.notExists(Paths.get("save"))) {
+                if(SaveLoader.load("recent") == 1) {
+                    Logger.log(Logger.LogLevel.INFO, "Saved Successfully!");
+                    WindowManager.newPopup(
+                            "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
+                } else {
+                    WindowManager.newPopup(
+                            "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
+                }
+
+                MainLoop.instance.started = true;
+                MainLoop.instance.inMenu = false;
+
+                MainLoop.instance.getCamera().position.set(400, 651, 0);
+                MainLoop.instance.getCamera().lookAt(0,0,0);
+                MainLoop.instance.getCamera().position.add(-200, 0,0);
+                MainLoop.instance.getCamera().up.set(Vector3.Y);
+
+                MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
+            }
             }
         });
         WindowManager.components.addActor(resumeButton);
@@ -131,6 +136,8 @@ public class MainMenuWindow extends WindowWrapper {
                             MainLoop.instance.getCamera().position.add(-200, 0,0);
                             MainLoop.instance.getCamera().up.set(Vector3.Y);
 
+                            MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
+
                             MainLoop.instance.t.resume();
                         } catch (Exception e) {
                             Logger.log(e.getStackTrace());
@@ -148,43 +155,45 @@ public class MainMenuWindow extends WindowWrapper {
         loadGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Thread t = new Thread() {
-                    @Override
-                    public void run() {
-                    try {
-                        Integer id = WindowManager.newTextInput("Galaxy name?","MilkyWay", 0.45f, 0.45f);
+            Thread t = new Thread() {
+                @Override
+                public void run() {
+                try {
+                    Integer id = WindowManager.newTextInput("Galaxy name?","MilkyWay", 0.45f, 0.45f);
 
-                        while (!WindowManager.hasOutput(id)) {
-                            Thread.sleep(50);
-                        }
-
-                        MainLoop.instance.t.suspend();
-
-                        if(SaveLoader.load(WindowManager.requestOutput(id)) == 1) {
-                            Logger.log(Logger.LogLevel.INFO, "Loaded Successfully!");
-                            WindowManager.newPopup(
-                                    "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
-                        } else {
-                            WindowManager.newPopup(
-                                    "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
-                        }
-
-                        MainLoop.instance.started = true;
-                        MainLoop.instance.inMenu = false;
-
-                        MainLoop.instance.getCamera().position.set(400, 651, 0);
-                        MainLoop.instance.getCamera().lookAt(0,0,0);
-                        MainLoop.instance.getCamera().position.add(-200, 0,0);
-                        MainLoop.instance.getCamera().up.set(Vector3.Y);
-
-                        MainLoop.instance.t.resume();
-                    } catch (Exception e) {
-                        Logger.log(e.getStackTrace());
+                    while (!WindowManager.hasOutput(id)) {
+                        Thread.sleep(50);
                     }
-                    }
-                };
 
-                t.start();
+                    MainLoop.instance.t.suspend();
+
+                    if(SaveLoader.load(WindowManager.requestOutput(id)) == 1) {
+                        Logger.log(Logger.LogLevel.INFO, "Loaded Successfully!");
+                        WindowManager.newPopup(
+                                "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
+                    } else {
+                        WindowManager.newPopup(
+                                "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
+                    }
+
+                    MainLoop.instance.started = true;
+                    MainLoop.instance.inMenu = false;
+
+                    MainLoop.instance.getCamera().position.set(400, 651, 0);
+                    MainLoop.instance.getCamera().lookAt(0,0,0);
+                    MainLoop.instance.getCamera().position.add(-200, 0,0);
+                    MainLoop.instance.getCamera().up.set(Vector3.Y);
+
+                    MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
+
+                    MainLoop.instance.t.resume();
+                } catch (Exception e) {
+                    Logger.log(e.getStackTrace());
+                }
+                }
+            };
+
+            t.start();
             }
         });
         WindowManager.components.addActor(loadGame);

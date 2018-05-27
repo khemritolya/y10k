@@ -18,6 +18,7 @@ import java.util.List;
 public class WindowManager {
     public static MainMenuWindow mainMenuWindow;
     public static CreditWindow creditWindow;
+    public static SectorInfoWindow sectorInfoWindow;
     private static HashMap<Integer, TextInputWindow> tiwin;
     private static HashMap<TextInputWindow, Integer> tiwinRev;
     private static HashMap<Integer, Boolean> hasReturned;
@@ -46,6 +47,7 @@ public class WindowManager {
 
         mainMenuWindow = new MainMenuWindow();
         creditWindow = new CreditWindow();
+        sectorInfoWindow = new SectorInfoWindow();
 
         MainLoop.instance.inMenu = true;
         mainMenuWindow.setVisible(true);
@@ -106,11 +108,14 @@ public class WindowManager {
     public static void render(SpriteBatch uiBatch, BitmapFont font) {
         if (MainLoop.instance.inMenu) {
             mainMenuWindow.setVisible(true);
+            sectorInfoWindow.setVisible(false);
         } else {
+            sectorInfoWindow.setVisible(true);
             mainMenuWindow.setVisible(false);
             creditWindow.setVisible(false);
         }
 
+        sectorInfoWindow.render(uiBatch, font);
         mainMenuWindow.render(uiBatch, font);
         creditWindow.render(uiBatch, font);
 

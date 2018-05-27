@@ -11,7 +11,7 @@ import com.kti.y10k.utilities.managers.GalaxyConstManager;
 public class Star {
     private static final TextureRegion STAR_TEXTURE = new TextureRegion(AssetManager.requestTexture("star"));
     private static final float STAR_SIZE = 60.0f;
-    public static final boolean DEBUG_STARS_POSITIONS = true;
+    public static final boolean DEBUG_STARS_POSITIONS = false;
 
     private static Vector3 use0 = new Vector3(0,0,0);
     private static Vector3 use1 = new Vector3(0,0,0);
