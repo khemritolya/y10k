@@ -52,4 +52,7 @@ y10k changelog
 
 - v0.05 "Canis"
 
+  Fixed bug in zoom in and zoom out
+    - Gilgamesh, King of Uruk
   Hopefully fixed an issue with rotating on Mac
+    - Gilgamesh, King of Uruk

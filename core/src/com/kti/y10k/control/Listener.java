@@ -21,8 +21,6 @@ import java.util.*;
 import static com.badlogic.gdx.Input.Keys.*;
 
 public class Listener {
-    private Cursor normalMouseCursor;
-
     private boolean rightDown = false;
     private boolean leftDown = false;
 
@@ -85,12 +83,7 @@ public class Listener {
 
             callbacks = callbackMap.keySet().toArray(new Integer[0]);
 
-            TextureData t = AssetManager.requestTexture("main-cursor").getTextureData();
-            t.prepare();
-            normalMouseCursor = Gdx.graphics.newCursor(t.consumePixmap(), 0,0);
-
-            Gdx.graphics.setCursor(normalMouseCursor);
-
+            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Crosshair);
         } catch (Exception e) {
             Logger.log(e.getStackTrace());
             throw new RuntimeException("Unable to parse keybinds");
@@ -138,7 +131,8 @@ public class Listener {
 
         if (!MainLoop.instance.inMenu && rightDown && !Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
             Gdx.input.setCursorCatched(false);
-            Gdx.graphics.setCursor(normalMouseCursor);
+            
+            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
             rightDown = false;
         }
     }

@@ -42,9 +42,9 @@ public class Sector {
         t.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                MainLoop.instance.listener.rotateAround = position;
+                MainLoop.instance.listener.rotateAround = position.cpy();
                 MainLoop.instance.getCamera().position.set(400 + position.x, 651, position.z);
-                MainLoop.instance.getCamera().lookAt(position);
+                MainLoop.instance.getCamera().lookAt(position.cpy());
                 MainLoop.instance.getCamera().position.add(-200, 0,0);
                 MainLoop.instance.getCamera().up.set(Vector3.Y);
                 MainLoop.instance.listener.selected = self;
@@ -69,7 +69,7 @@ public class Sector {
         t.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                MainLoop.instance.listener.rotateAround = position;
+                MainLoop.instance.listener.rotateAround = position.cpy();
                 MainLoop.instance.getCamera().position.set(400 + position.x, 651, position.z);
                 MainLoop.instance.getCamera().lookAt(position);
                 MainLoop.instance.getCamera().position.add(-200, 0,0);
