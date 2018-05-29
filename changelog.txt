@@ -49,3 +49,7 @@ y10k changelog
   Updated Installation Instructions in Readme
 
   Some other QoL changes
+
+- v0.05 "Canis"
+
+  Hopefully fixed an issue with rotating on Mac

@@ -8,4 +8,5 @@
 
 star img/star.png
 win img/window.png
-cursor img/cursor2.png
+text-cursor img/cursor2.png
+main-cursor img/cursor3.png

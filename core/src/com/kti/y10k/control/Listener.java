@@ -3,10 +3,14 @@ package com.kti.y10k.control;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Cursor;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.math.Vector3;
 import com.kti.y10k.universe.Sector;
 import com.kti.y10k.utilities.Logger;
 import com.kti.y10k.MainLoop;
+import com.kti.y10k.utilities.managers.AssetManager;
 import com.kti.y10k.utilities.managers.WindowManager;
 
 
@@ -17,6 +21,8 @@ import java.util.*;
 import static com.badlogic.gdx.Input.Keys.*;
 
 public class Listener {
+    private Cursor normalMouseCursor;
+
     private boolean rightDown = false;
     private boolean leftDown = false;
 
@@ -78,10 +84,18 @@ public class Listener {
             }
 
             callbacks = callbackMap.keySet().toArray(new Integer[0]);
+
+            TextureData t = AssetManager.requestTexture("main-cursor").getTextureData();
+            t.prepare();
+            normalMouseCursor = Gdx.graphics.newCursor(t.consumePixmap(), 0,0);
+
+            Gdx.graphics.setCursor(normalMouseCursor);
+
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.log(e.getStackTrace());
             throw new RuntimeException("Unable to parse keybinds");
         }
+
         Logger.log(Logger.LogLevel.INFO, "Done Loading Keybinds.");
     }
 
@@ -124,6 +138,7 @@ public class Listener {
 
         if (!MainLoop.instance.inMenu && rightDown && !Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
             Gdx.input.setCursorCatched(false);
+            Gdx.graphics.setCursor(normalMouseCursor);
             rightDown = false;
         }
     }

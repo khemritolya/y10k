@@ -2,6 +2,10 @@
 
 y10k is a ~~space oddesey~~ ~~game~~ star viewing simulation in the 11th millenium.
 
+Current Stable Release Version: 0.04 - "Vulcan"
+
+Current Beta Release Version:   0.05 - "Canis"
+
 See changelog.txt for recent changes.
 Development Discord: https://discord.gg/M2ggfAR
 

@@ -15,7 +15,7 @@ public class TextFieldHelper {
         textFieldStyle.font = MainLoop.instance.font;
         textFieldStyle.fontColor = Color.WHITE;
         textFieldStyle.cursor = new TextureRegionDrawable(
-                new TextureRegion(AssetManager.requestTexture("cursor")));
+                new TextureRegion(AssetManager.requestTexture("text-cursor")));
         textFieldStyle.cursor.setMinWidth(MainLoop.instance.font.getSpaceWidth() / 1.2f);
         textFieldStyle.background = new TextureRegionDrawable(new TextureRegion(AssetManager.requestTexture("win")));
     }
