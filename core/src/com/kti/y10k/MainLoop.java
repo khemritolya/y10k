@@ -19,6 +19,7 @@ import com.kti.y10k.utilities.managers.GalaxyConstManager;
 import com.kti.y10k.utilities.managers.SettingsManager;
 import com.kti.y10k.utilities.managers.WindowManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,15 +109,16 @@ public class MainLoop extends ApplicationAdapter {
 
 			WindowManager.init();
 
-			nm = new NameFactory("assets/predefs/constellations.txt", 2, 6);
+			nm = new NameFactory(SettingsManager.requestSetting("namelist"), 2, 6);
 
 			c = new Galaxy();
 
 			listener = new Listener();
 
 			try {
-				sound = Gdx.audio.newSound(Gdx.files.internal("assets/audio/audio.mp3"));
-				soundID = sound.play(SettingsManager.requestSetting("music-volume"));
+				sound = Gdx.audio.newSound(Gdx.files.internal(SettingsManager.requestSetting("music-track")));
+				soundID = sound.play(Float.parseFloat(SettingsManager.requestSetting("music-volume")));
+				if (soundID == -1) throw new IOException("Could not init music propely");
 				sound.setLooping(soundID, true);
 
 			} catch (Exception e) {

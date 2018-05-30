@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class SettingsManager {
-    private static HashMap<String, Float> settings;
+    private static HashMap<String, String> settings;
 
     public static int init() {
         Logger.log(Logger.LogLevel.INFO, "Loading settings consts...");
@@ -20,7 +20,7 @@ public class SettingsManager {
                 String line = reader.nextLine();
                 if (!line.startsWith("#") && !(line.length() == 0)) {
                     StringTokenizer st = new StringTokenizer(line);
-                    settings.put(st.nextToken(), Float.parseFloat(st.nextToken()));
+                    settings.put(st.nextToken(), st.nextToken());
                 }
             }
 
@@ -34,7 +34,7 @@ public class SettingsManager {
         return 1;
     }
 
-    public static float requestSetting(String id) {
+    public static String requestSetting(String id) {
         if (settings.get(id) == null) Logger.log(Logger.LogLevel.WARN, "Unable to find setting " + id);
 
         return settings.get(id);

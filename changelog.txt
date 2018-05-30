@@ -57,6 +57,9 @@ y10k changelog
   Fixed a bug with file saving/loading interation
   with the menu screen
 
+  Proper settings manager
+    - See settings.txt
+
   Added a default texture in case of an error
 
   QoL changes for zooming in while camera moving

@@ -14,8 +14,8 @@ import java.util.Calendar;
 
 public class Logger {
     public enum LogLevel {
-        INFO("INFO"), DEBUG("DEBUG"),
-        WARN("WARN"), ERROR("ERROR");
+        INFO(" INFO  "), DEBUG(" DEBUG "),
+        WARN(" WARN  "), ERROR(" ERROR ");
 
         public final String name;
 
@@ -52,7 +52,7 @@ public class Logger {
     }
 
     public static void log(LogLevel level, String msg) {
-        String logMessage = String.format("[%s]\t %s", level.name, msg);
+        String logMessage = String.format("[%s] %s", level.name, msg);
         log.add(logMessage);
         try {
             out.write(logMessage + "\n");

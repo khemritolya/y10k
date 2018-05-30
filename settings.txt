@@ -1,6 +1,6 @@
 #
 # The y10k settings file
-# Revision 0.04 A
+# Revision 0.05 A
 #
 # Use this to customize your y10k experience
 # while I work on a proper way to do this.
@@ -10,5 +10,17 @@
 # [setting] [value]
 #
 
+# constellation namelist
+namelist assets/predefs/constellations.txt
+
+# music track
+music-track assets/audio/audio.mp3
+
 # How loud should the music be?
-music-volume 0.10
+# 0 - off
+# 1 - max
+music-volume 0.1
+
+# Some debug stuff for star positions
+debug-star-positions true
+
