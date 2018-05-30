@@ -25,14 +25,12 @@ public class Logger {
     }
 
     private static ArrayList<String> log;
-    private static SimpleDateFormat timeFormat;
     private static Calendar calendar;
     private static String startTime;
     private static BufferedWriter out;
 
     static {
         log = new ArrayList<>();
-        timeFormat = new SimpleDateFormat("HH:mm:ss:SS");
         calendar = Calendar.getInstance();
         startTime = new SimpleDateFormat("HH-mm-ss-SS").format(calendar.getTime());
         try {
@@ -54,7 +52,7 @@ public class Logger {
     }
 
     public static void log(LogLevel level, String msg) {
-        String logMessage = String.format("[%s] %s: %s", timeFormat.format(calendar.getTime()), level.name, msg);
+        String logMessage = String.format("[%s]\t %s", level.name, msg);
         log.add(logMessage);
         try {
             out.write(logMessage + "\n");

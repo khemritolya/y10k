@@ -22,7 +22,6 @@ import static com.badlogic.gdx.Input.Keys.*;
 
 public class Listener {
     private boolean rightDown = false;
-    private boolean leftDown = false;
 
     private HashMap<String, Integer> keyMap;
     private HashMap<String, InputAction> actionMap;
@@ -83,7 +82,6 @@ public class Listener {
 
             callbacks = callbackMap.keySet().toArray(new Integer[0]);
 
-            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Crosshair);
         } catch (Exception e) {
             Logger.log(e.getStackTrace());
             throw new RuntimeException("Unable to parse keybinds");
@@ -131,8 +129,6 @@ public class Listener {
 
         if (!MainLoop.instance.inMenu && rightDown && !Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
             Gdx.input.setCursorCatched(false);
-            
-            Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
             rightDown = false;
         }
     }

@@ -112,9 +112,11 @@ class Forward extends InputAction {
     public void exec() {
         if (!MainLoop.instance.inMenu) {
             MainLoop.instance.getCamera().position.add(
-                    -400 * MainLoop.instance.dT,0,0);
+                    -MainLoop.instance.getCamera().position.dst(
+                            MainLoop.instance.listener.rotateAround) * MainLoop.instance.dT,0,0);
             MainLoop.instance.listener.rotateAround.add(
-                    -400 * MainLoop.instance.dT,0, 0);
+                    -MainLoop.instance.getCamera().position.dst(
+                            MainLoop.instance.listener.rotateAround) * MainLoop.instance.dT,0, 0);
         }
     }
 
@@ -127,9 +129,11 @@ class Backward extends InputAction {
     public void exec() {
         if (!MainLoop.instance.inMenu) {
             MainLoop.instance.getCamera().position.add(
-                    400 * MainLoop.instance.dT,0,0);
+                    MainLoop.instance.getCamera().position.dst(
+                            MainLoop.instance.listener.rotateAround) * MainLoop.instance.dT,0,0);
             MainLoop.instance.listener.rotateAround.add(
-                    400 * MainLoop.instance.dT,0, 0);
+                    MainLoop.instance.getCamera().position.dst(
+                            MainLoop.instance.listener.rotateAround) * MainLoop.instance.dT,0, 0);
         }
     }
 
@@ -142,9 +146,11 @@ class Right extends InputAction {
     public void exec() {
         if (!MainLoop.instance.inMenu) {
             MainLoop.instance.getCamera().position.add(
-                    0,0, -400 * MainLoop.instance.dT);
+                    0,0, -MainLoop.instance.getCamera().position.dst(
+                            MainLoop.instance.listener.rotateAround) * MainLoop.instance.dT);
             MainLoop.instance.listener.rotateAround.add(
-                    0,0, -400 * MainLoop.instance.dT);
+                    0,0, -MainLoop.instance.getCamera().position.dst(
+                            MainLoop.instance.listener.rotateAround) * MainLoop.instance.dT);
         }
     }
 
@@ -157,9 +163,11 @@ class Left extends InputAction {
     public void exec() {
         if (!MainLoop.instance.inMenu) {
             MainLoop.instance.getCamera().position.add(
-                    0,0, 400 * MainLoop.instance.dT);
+                    0,0, MainLoop.instance.getCamera().position.dst(
+                            MainLoop.instance.listener.rotateAround) * MainLoop.instance.dT);
             MainLoop.instance.listener.rotateAround.add(
-                    0,0, 400 * MainLoop.instance.dT);
+                    0,0, MainLoop.instance.getCamera().position.dst(
+                            MainLoop.instance.listener.rotateAround) * MainLoop.instance.dT);
         }
     }
 

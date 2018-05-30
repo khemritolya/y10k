@@ -43,7 +43,10 @@ public class AssetManager {
     }
 
     public static Texture requestTexture(String id) {
-        if (texmap.get(id) == null) Logger.log(Logger.LogLevel.WARN, "Unable to find asset " + id);
+        if (texmap.get(id) == null) {
+            Logger.log(Logger.LogLevel.WARN, "Unable to find asset " + id);
+            return requestTexture("not-found");
+        }
 
         return texmap.get(id);
     }

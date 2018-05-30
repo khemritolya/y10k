@@ -10,3 +10,6 @@ star img/star.png
 win img/window.png
 text-cursor img/cursor2.png
 main-cursor img/cursor3.png
+
+# only for when it can't find a texture:
+not-found img/error.png

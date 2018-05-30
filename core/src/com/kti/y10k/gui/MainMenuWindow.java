@@ -65,20 +65,20 @@ public class MainMenuWindow extends WindowWrapper {
                     Logger.log(Logger.LogLevel.INFO, "Saved Successfully!");
                     WindowManager.newPopup(
                             "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
+
+                    MainLoop.instance.started = true;
+                    MainLoop.instance.inMenu = false;
+
+                    MainLoop.instance.getCamera().position.set(400, 651, 0);
+                    MainLoop.instance.getCamera().lookAt(0,0,0);
+                    MainLoop.instance.getCamera().position.add(-200, 0,0);
+                    MainLoop.instance.getCamera().up.set(Vector3.Y);
+
+                    MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
                 } else {
                     WindowManager.newPopup(
                             "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
                 }
-
-                MainLoop.instance.started = true;
-                MainLoop.instance.inMenu = false;
-
-                MainLoop.instance.getCamera().position.set(400, 651, 0);
-                MainLoop.instance.getCamera().lookAt(0,0,0);
-                MainLoop.instance.getCamera().position.add(-200, 0,0);
-                MainLoop.instance.getCamera().up.set(Vector3.Y);
-
-                MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
             }
             }
         });
@@ -123,18 +123,18 @@ public class MainMenuWindow extends WindowWrapper {
                             if (SaveWriter.save(WindowManager.requestOutput(id)) == 1) {
                                 WindowManager.newPopup(
                                         "Galaxy Saved \nSuccessfully", 0.45f, 0.45f);
+
+                                MainLoop.instance.started = true;
+                                MainLoop.instance.inMenu = false;
+
+                                MainLoop.instance.getCamera().position.set(400, 651, 0);
+                                MainLoop.instance.getCamera().lookAt(0,0,0);
+                                MainLoop.instance.getCamera().position.add(-200, 0,0);
+                                MainLoop.instance.getCamera().up.set(Vector3.Y);
                             } else {
                                 WindowManager.newPopup(
                                         "Error: Save Galaxy! \n Check Logs!", 0.45f, 0.45f);
                             }
-
-                            MainLoop.instance.started = true;
-                            MainLoop.instance.inMenu = false;
-
-                            MainLoop.instance.getCamera().position.set(400, 651, 0);
-                            MainLoop.instance.getCamera().lookAt(0,0,0);
-                            MainLoop.instance.getCamera().position.add(-200, 0,0);
-                            MainLoop.instance.getCamera().up.set(Vector3.Y);
 
                             MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
 
@@ -171,20 +171,20 @@ public class MainMenuWindow extends WindowWrapper {
                         Logger.log(Logger.LogLevel.INFO, "Loaded Successfully!");
                         WindowManager.newPopup(
                                 "Galaxy Loaded \nSuccessfully", 0.45f, 0.45f);
+
+                        MainLoop.instance.started = true;
+                        MainLoop.instance.inMenu = false;
+
+                        MainLoop.instance.getCamera().position.set(400, 651, 0);
+                        MainLoop.instance.getCamera().lookAt(0,0,0);
+                        MainLoop.instance.getCamera().position.add(-200, 0,0);
+                        MainLoop.instance.getCamera().up.set(Vector3.Y);
+
+                        MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
                     } else {
                         WindowManager.newPopup(
                                 "Error: Load Galaxy! \n Check Logs!", 0.45f, 0.45f);
                     }
-
-                    MainLoop.instance.started = true;
-                    MainLoop.instance.inMenu = false;
-
-                    MainLoop.instance.getCamera().position.set(400, 651, 0);
-                    MainLoop.instance.getCamera().lookAt(0,0,0);
-                    MainLoop.instance.getCamera().position.add(-200, 0,0);
-                    MainLoop.instance.getCamera().up.set(Vector3.Y);
-
-                    MainLoop.instance.listener.selected = MainLoop.instance.c.getAt(0,0);
 
                     MainLoop.instance.t.resume();
                 } catch (Exception e) {
