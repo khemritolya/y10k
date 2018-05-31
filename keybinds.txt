@@ -17,6 +17,9 @@ ESC mainmenu
 # force close y10k
 BACKSPACE close
 
+# fix-orientation
+X reorient
+
 # zoom in
 W zoom-in
 

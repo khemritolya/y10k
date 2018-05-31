@@ -22,5 +22,5 @@ music-track assets/audio/audio.mp3
 music-volume 0.1
 
 # Some debug stuff for star positions
-debug-star-positions true
+debug-star-positions false
 

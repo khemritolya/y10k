@@ -174,3 +174,21 @@ class Left extends InputAction {
     @Override
     public boolean isLongDown() {return false;}
 }
+
+class Reorient extends InputAction {
+
+    @Override
+    public void exec() {
+        if (!MainLoop.instance.inMenu) {
+            MainLoop.instance.getCamera().position.set(400 +
+                    MainLoop.instance.listener.rotateAround.x, 651,
+                    MainLoop.instance.listener.rotateAround.z);
+            MainLoop.instance.getCamera().lookAt(MainLoop.instance.listener.rotateAround);
+            MainLoop.instance.getCamera().position.add(-200, 0,0);
+            MainLoop.instance.getCamera().up.set(Vector3.Y);
+        }
+    }
+
+    @Override
+    public boolean isLongDown() {return false;}
+}

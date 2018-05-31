@@ -46,7 +46,7 @@ public class Listener {
         actionMap.put("backward", new Backward());
         actionMap.put("right", new Right());
         actionMap.put("left", new Left());
-
+        actionMap.put("reorient", new Reorient());
 
         callbackMap = new HashMap<>();
         actionKeycodeMap = new HashMap<>();

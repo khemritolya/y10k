@@ -119,7 +119,8 @@ public class Sector {
     }
 
     public boolean atPoint(float x, float z) {
-        return  (x - position.x < 0.001 && z - position.z < 0.001);
+        return (Math.abs(x - position.x) < 0.07 &&
+                Math.abs(z - position.z) < 0.07);
     }
 
     @Override
